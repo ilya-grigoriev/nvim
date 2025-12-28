@@ -1,4 +1,6 @@
 vim.opt.rtp:remove("/usr/share/vim/vimfiles")
+vim.cmd("packadd nohlsearch")
+vim.cmd(":hi Statusline guibg=NONE")
 
 vim.o.relativenumber = true
 vim.o.number = true
@@ -15,14 +17,12 @@ vim.keymap.set('v', '<C-y>', '"*y')
 vim.pack.add{
   { src =  'https://github.com/chomosuke/typst-preview.nvim' },
   { src =  'https://github.com/mason-org/mason.nvim' },
-  { src =  'https://github.com/nvim-telescope/telescope.nvim' },
-  { src =  'https://github.com/nvim-lua/plenary.nvim' },
+  { src =  'https://github.com/nvim-mini/mini.pick' },
 }
 
+require("mason").setup()
 typst = require('typst-preview')
 
-require("mason").setup()
-
-vim.cmd(":hi Statusline guibg=NONE")
-
-vim.cmd("packadd nohlsearch")
+mini = require("mini.pick").setup()
+vim.keymap.set('n', '<leader>r', function() MiniPick.builtin.grep_live({"rg"}) end )
+vim.keymap.set('n', '<leader>f', function() MiniPick.builtin.files() end )
