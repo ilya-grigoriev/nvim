@@ -10,8 +10,8 @@ return {
     {
         'hrsh7th/nvim-cmp',
         'neovim/nvim-lspconfig',
-        'jose-elias-alvarez/null-ls.nvim',
         'hrsh7th/cmp-nvim-lsp',
+        'nvimdev/guard.nvim',
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
     },
@@ -23,21 +23,13 @@ return {
     },
 
     -- Themes
-    -- {"rebelot/kanagawa.nvim"},
-
-    -- Commenter
-    {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
-    },
+    {"rebelot/kanagawa.nvim"},
 
     -- Snippets
-    -- {
-    --     "L3MON4D3/LuaSnip",
-    --     run = "make install_jsregexp"
-    -- },
+    {
+        "L3MON4D3/LuaSnip",
+        run = "make install_jsregexp"
+    },
     {
         'rafamadriz/friendly-snippets',
         'saadparwaiz1/cmp_luasnip',
@@ -62,4 +54,6 @@ return {
             -- VimTeX configuration goes here
         end
     },
+
+    'ThePrimeagen/vim-be-good',
 }
