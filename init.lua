@@ -13,6 +13,7 @@ vim.pack.add{
   'https://github.com/chomosuke/typst-preview.nvim',
   'https://github.com/nvim-mini/mini.pick',
   'https://github.com/stevearc/oil.nvim',
+  'https://github.com/L3MON4D3/LuaSnip',
 }
 
 require("oil").setup()
@@ -35,8 +36,6 @@ vim.keymap.set('n', '\'r', function() MiniPick.builtin.grep_live() end )
 vim.keymap.set('n', '\'f', function() MiniPick.builtin.files() end )
 vim.keymap.set('n', '\'h', function() MiniPick.builtin.help() end )
 
--- local ls = require("luasnip")
--- local s = ls.snippet
--- local t = ls.text_node
--- local fmta = require("luasnip.extras.fmt").fmta
--- require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/"})
+require("luasnip").setup({enable_autosnippets = true})
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/"})
+vim.keymap.set('i', '<Tab>', function() require("luasnip").expand() end, {silent = true})
