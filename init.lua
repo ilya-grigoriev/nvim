@@ -33,7 +33,7 @@ vim.keymap.set('n', "'e", '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.lsp.config['tinymist'] = { cmd = {'tinymist'} }
 vim.lsp.enable({'tinymist'})
 
-mini = require("mini.pick").setup({ mappings = {caret_left = '<C-h>', caret_right = '<C-l>'} })
+require("mini.pick").setup({ mappings = {caret_left = '<C-h>', caret_right = '<C-l>'} })
 vim.keymap.set('n', '\'r', function() MiniPick.builtin.grep_live() end )
 vim.keymap.set('n', '\'f', function() MiniPick.builtin.files() end )
 vim.keymap.set('n', '\'h', function() MiniPick.builtin.help() end )
