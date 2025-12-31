@@ -3,11 +3,12 @@ vim.cmd("packadd nohlsearch")
 vim.cmd("set relativenumber number incsearch ignorecase")
 vim.o.swapfile = false
 vim.o.tabstop = 4
+vim.g.clipboard = unnamedplus
 
 vim.keymap.set({'n', 'v'}, 'H', '0')
 vim.keymap.set({'n', 'v'}, 'L', '$')
 vim.keymap.set('n', 'gb', '<C-^>')
-vim.keymap.set('v', '<C-y>', '"*y')
+vim.keymap.set('v', '<C-y>', '"+y')
 
 vim.pack.add{
   'https://github.com/kaarmu/typst.vim',
