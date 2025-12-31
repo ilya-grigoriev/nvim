@@ -21,14 +21,6 @@ vim.pack.add{
 require("oil").setup()
 vim.keymap.set('n', '<C-n>', ':Oil<CR>')
 
-vim.api.nvim_create_autocmd('LspAttach', {
-		callback = function(x)
-				local client = vim.lsp.get_client_by_id(x.data.client_id)
-				if client:supports_method('textDocument/completion') then
-						vim.lsp.completion.enable(true, client.id, x.buf)
-				end
-		end
-})
 vim.keymap.set('n', "'e", '<cmd>lua vim.diagnostic.open_float()<CR>')
 
 vim.lsp.config['tinymist'] = { cmd = {'tinymist'} }
