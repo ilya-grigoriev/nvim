@@ -14,7 +14,7 @@ vim.pack.add{
   'https://github.com/kaarmu/typst.vim',
   'https://github.com/nvim-mini/mini.pick',
   'https://github.com/stevearc/oil.nvim',
-  'https://github.com/L3MON4D3/LuaSnip',
+  {src = 'https://github.com/L3MON4D3/LuaSnip', run = "make install_jsregexp"},
   'https://github.com/kdheepak/monochrome.nvim',
 }
 
@@ -24,7 +24,8 @@ vim.keymap.set('n', '<C-n>', ':Oil<CR>')
 vim.keymap.set('n', "'e", '<cmd>lua vim.diagnostic.open_float()<CR>')
 
 vim.lsp.config['tinymist'] = { cmd = {'tinymist'} }
-vim.lsp.enable({'tinymist'})
+vim.lsp.config['clang'] = { cmd = {'clangd'} }
+vim.lsp.enable({'tinymist', 'clang'})
 
 require("mini.pick").setup({ mappings = {caret_left = '<C-h>', caret_right = '<C-l>'} })
 vim.keymap.set('n', '\'r', function() MiniPick.builtin.grep_live() end )
