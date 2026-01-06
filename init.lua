@@ -2,7 +2,7 @@ vim.opt.rtp:remove("/usr/share/vim/vimfiles")
 vim.cmd("packadd nohlsearch")
 vim.cmd("set relativenumber number incsearch ignorecase")
 vim.o.swapfile = false
-vim.o.tabstop = 4
+vim.cmd("set tabstop=4 shiftwidth=4")
 vim.g.clipboard = unnamedplus
 
 vim.keymap.set({'n', 'v'}, 'H', '0')
