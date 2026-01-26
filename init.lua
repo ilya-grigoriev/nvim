@@ -18,14 +18,15 @@ vim.pack.add{
   'https://github.com/kdheepak/monochrome.nvim',
 }
 
-require("oil").setup()
+require("oil").setup({view_options = {show_hidden = true}})
 vim.keymap.set('n', '<C-n>', ':Oil<CR>')
 
 vim.keymap.set('n', "'e", '<cmd>lua vim.diagnostic.open_float()<CR>')
 
 vim.lsp.config['tinymist'] = { cmd = {'tinymist'} }
 vim.lsp.config['clang'] = { cmd = {'clangd'} }
-vim.lsp.enable({'tinymist', 'clang'})
+vim.lsp.config['bash_language_server'] = { cmd = {'bash-language-server', 'start'}, filetypes = {'sh'} }
+vim.lsp.enable({'tinymist', 'clang', 'bash_language_server'})
 
 require("mini.pick").setup({ mappings = {caret_left = '<C-h>', caret_right = '<C-l>'} })
 vim.keymap.set('n', '\'r', function() MiniPick.builtin.grep_live() end )
