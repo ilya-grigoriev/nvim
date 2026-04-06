@@ -2,7 +2,7 @@ vim.opt.rtp:remove("/usr/share/vim/vimfiles")
 vim.cmd("packadd nohlsearch")
 vim.cmd("set relativenumber number incsearch ignorecase")
 vim.o.swapfile = false
-vim.cmd("set tabstop=4 shiftwidth=4")
+vim.cmd("set tabstop=4 shiftwidth=4 conceallevel=2")
 vim.g.clipboard = unnamedplus
 
 vim.keymap.set({'n', 'v'}, 'H', '0')
@@ -11,11 +11,12 @@ vim.keymap.set('n', 'gb', '<C-^>')
 vim.keymap.set('v', '<C-y>', '"+y')
 
 vim.pack.add{
-  'https://github.com/kaarmu/typst.vim',
-  'https://github.com/nvim-mini/mini.pick',
-  'https://github.com/stevearc/oil.nvim',
-  {src = 'https://github.com/L3MON4D3/LuaSnip', run = "make install_jsregexp"},
-  'https://github.com/kdheepak/monochrome.nvim',
+	'https://github.com/kaarmu/typst.vim',
+	'https://github.com/obsidian-nvim/obsidian.nvim',
+	'https://github.com/nvim-mini/mini.pick',
+	'https://github.com/stevearc/oil.nvim',
+	{src = 'https://github.com/L3MON4D3/LuaSnip', run = "make install_jsregexp"},
+	'https://github.com/kdheepak/monochrome.nvim',
 }
 
 require("oil").setup({view_options = {show_hidden = true}})
@@ -23,10 +24,10 @@ vim.keymap.set('n', '<C-n>', ':Oil<CR>')
 
 vim.keymap.set('n', "'e", '<cmd>lua vim.diagnostic.open_float()<CR>')
 
-vim.lsp.config['tinymist'] = { cmd = {'tinymist'} }
-vim.lsp.config['clang'] = { cmd = {'clangd'} }
+vim.lsp.config['tinymist'] = { cmd = {'tinymist'}, filetypes = {'typ'} }
 vim.lsp.config['bash_language_server'] = { cmd = {'bash-language-server', 'start'}, filetypes = {'sh'} }
-vim.lsp.enable({'tinymist', 'clang', 'bash_language_server'})
+vim.lsp.config['ty'] =  { cmd = { 'ty', 'server' }, filetypes = { 'python' }, root_markers = { 'ty.toml', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' } }
+vim.lsp.enable({'tinymist', 'bash_language_server', 'ty'})
 
 require("mini.pick").setup({ mappings = {caret_left = '<C-h>', caret_right = '<C-l>'} })
 vim.keymap.set('n', '\'r', function() MiniPick.builtin.grep_live() end )
@@ -38,5 +39,7 @@ require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/snippets/"})
 vim.keymap.set('i', '<Tab>', function() require("luasnip").expand() end, {silent = true})
 vim.keymap.set({'i', 's'}, '<C-j>', function() require("luasnip").jump(1) end, {silent = true})
 vim.keymap.set({'i', 's'}, '<C-k>', function() require("luasnip").jump(-1) end, {silent = true})
+
+require("obsidian").setup({legacy_commands=false, footer={enabled=false}, workspaces = {{name="anki", path="~/dev/anki"}}})
 
 vim.cmd("color monochrome")
