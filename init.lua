@@ -24,10 +24,11 @@ vim.keymap.set('n', '<C-n>', ':Oil<CR>')
 
 vim.keymap.set('n', "'e", '<cmd>lua vim.diagnostic.open_float()<CR>')
 
-vim.lsp.config['tinymist'] = { cmd = {'tinymist'}, filetypes = {'typ'} }
+vim.lsp.config['tinymist'] = { cmd = {'tinymist'}, filetypes = {'python'} }
 vim.lsp.config['bash_language_server'] = { cmd = {'bash-language-server', 'start'}, filetypes = {'sh'} }
 vim.lsp.config['ty'] =  { cmd = { 'ty', 'server' }, filetypes = { 'python' }, root_markers = { 'ty.toml', 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', '.git' } }
-vim.lsp.enable({'tinymist', 'bash_language_server', 'ty'})
+vim.lsp.config['gopls'] = { cmd = {'gopls'}, filetypes = { "go", "gomod", "gowork", "gotmpl" } }
+vim.lsp.enable({'tinymist', 'bash_language_server', 'ty', 'gopls'})
 
 require("mini.pick").setup({ mappings = {caret_left = '<C-h>', caret_right = '<C-l>'} })
 vim.keymap.set('n', '\'r', function() MiniPick.builtin.grep_live() end )
@@ -40,6 +41,7 @@ vim.keymap.set('i', '<Tab>', function() require("luasnip").expand() end, {silent
 vim.keymap.set({'i', 's'}, '<C-j>', function() require("luasnip").jump(1) end, {silent = true})
 vim.keymap.set({'i', 's'}, '<C-k>', function() require("luasnip").jump(-1) end, {silent = true})
 
-require("obsidian").setup({legacy_commands=false, footer={enabled=false}, workspaces = {{name="anki", path="~/dev/anki"}}})
+require("obsidian").setup({legacy_commands=false, footer={enabled=false}, workspaces = {{name="anki", path="~/dev/anki"}, {name="notes", path="~/dev/un"}}})
+vim.keymap.set('n', '\'ot', ':Obsidian tags<CR>')
 
 vim.cmd("color monochrome")
